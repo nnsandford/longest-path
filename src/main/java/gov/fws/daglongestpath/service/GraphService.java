@@ -15,25 +15,25 @@ public class GraphService {
     public String calculateLongestPath(AdjacencyMap graph, String vertex)
     {
         Deque<String> sorted = topologicalSort(graph);
-        Map<String, Integer> distances = graph.getVerticesInGraph().stream().collect(Collectors.toMap(Function.identity(), x -> Integer.MAX_VALUE));
-
-        distances.put(vertex, 0);
-
-        while (!sorted.isEmpty())
-        {
-            String next = sorted.pop();
-
-            if (distances.get(next) != null && distances.get(next) != Integer.MAX_VALUE)
-            {
-                for (String neighbor : graph.retrieveAdjacentVertices(next))
-                {
-                    if (distances.get(neighbor) != null && distances.get(neighbor) > distances.get(next))
-                    {
-                        distances.put(neighbor, distances.get(next) + 1);
-                    }
-                }
-            }
-        }
+//        Map<String, Integer> distances = graph.getVerticesInGraph().stream().collect(Collectors.toMap(Function.identity(), x -> Integer.MAX_VALUE));
+//
+//        distances.put(vertex, 0);
+//
+//        while (!sorted.isEmpty())
+//        {
+//            String next = sorted.pop();
+//
+//            if (distances.get(next) != null && distances.get(next) != Integer.MAX_VALUE)
+//            {
+//                for (String neighbor : graph.retrieveAdjacentVertices(next))
+//                {
+//                    if (distances.get(neighbor) != null && distances.get(neighbor) > distances.get(next))
+//                    {
+//                        distances.put(neighbor, distances.get(next) + 1);
+//                    }
+//                }
+//            }
+//        }
 
         return sorted.stream().collect(Collectors.joining(" -> "));
     }
